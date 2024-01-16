@@ -3,7 +3,7 @@ import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statS
 import * as path from 'node:path';
 import type { PackageJson } from 'type-fest';
 import { createTestEnvironmentBlank } from './test-environments/create-test-environment-blank';
-import { createWithLock, getPackageManager, type Logger, packageManagerInstall, setPackagerManagerConfig, setupGit } from './utilities/index';
+import { createWithLock, getVersionedPackageManager, isYarn1, type Logger, packageManagerInstall, setPackagerManagerConfig, setupGit, YARN_1_LATEST_VERSION } from './utilities/index';
 import { createTestEnvironmentOtterProjectWithApp } from './test-environments/create-test-environment-otter-project';
 import { O3rCliError } from '@o3r/schematics';
 
@@ -15,8 +15,7 @@ export type PrepareTestEnvType = 'blank' | 'o3r-project-with-app';
 
 /**
  * Retrieve the version used by yarn and setup at root level
- * @param rootFolderPath: path to the folder where to take the configuration from
- * @param rootFolderPath
+ * @param rootFolderPath path to the folder where to take the configuration from
  */
 export function getYarnVersionFromRoot(rootFolderPath: string) {
   const o3rPackageJson: PackageJson & { generatorDependencies?: Record<string, string> } =
@@ -49,7 +48,7 @@ export async function prepareTestEnv(folderName: string, options?: PrepareTestEn
   const cacheFolderPath = path.resolve(globalFolderPath, 'cache');
 
   JSON.parse(readFileSync(path.join(rootFolderPath, 'packages', '@o3r', 'core', 'package.json')).toString());
-  const yarnVersion: string = yarnVersionParam || getYarnVersionFromRoot(rootFolderPath);
+  const yarnVersion: string = yarnVersionParam || (isYarn1() && YARN_1_LATEST_VERSION) || getYarnVersionFromRoot(rootFolderPath);
   const execAppOptions: ExecSyncOptions = {
     cwd: workspacePath,
     stdio: 'inherit',
@@ -108,7 +107,7 @@ export async function prepareTestEnv(folderName: string, options?: PrepareTestEn
   let isInWorkspace = false;
   let untouchedProject: undefined | string;
   let untouchedProjectPath: undefined | string;
-  const appDirectory = `${type}-${getPackageManager()}`;
+  const appDirectory = `${type}-${getVersionedPackageManager()}`;
   switch (type) {
     case 'blank': {
       await createTestEnvironmentBlank({
