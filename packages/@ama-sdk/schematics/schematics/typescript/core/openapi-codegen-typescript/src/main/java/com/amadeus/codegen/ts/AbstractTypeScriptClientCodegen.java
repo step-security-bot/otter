@@ -456,6 +456,14 @@ public abstract class AbstractTypeScriptClientCodegen extends DefaultCodegen imp
     }
   }
 
+  @Override
+  public List<VendorExtension> getSupportedVendorExtensions() {
+    ArrayList<VendorExtension> supportedVendorExtensions = new ArrayList<VendorExtension>();
+    supportedVendorExtensions.add(new VendorExtension("x-date-timezone", ExtensionLevel.FIELD, "In order to add the timezone to your timestamp property you can add this x-vendor", null));
+    supportedVendorExtensions.add(new VendorExtension("x-date-without-timezone", ExtensionLevel.FIELD, "In order to remove the timezone to your timestamp property you can add this x-vendor", null));
+    return supportedVendorExtensions;
+  }
+
   /**
    * Ensures that date and datetime are not considered primitives.
    * Adds Vendor Extensions to properly describe the types.
@@ -471,7 +479,7 @@ public abstract class AbstractTypeScriptClientCodegen extends DefaultCodegen imp
       }
     }
 
-    if (property != null && !stringifyDate) {
+    if (property != null && (!stringifyDate || property.vendorExtensions.containsKey("x-date-without-timezone"))) {
       if (Boolean.TRUE.equals(property.isDate) || Boolean.TRUE.equals(property.isDateTime)) {
         property.isPrimitiveType = false;
       }
@@ -537,6 +545,13 @@ public abstract class AbstractTypeScriptClientCodegen extends DefaultCodegen imp
     if (property.vendorExtensions.containsKey("x-map-name") && !property.isArray) {
       throw new IllegalArgumentException("error in " + property.baseName + ", x-map-name should only apply to a "
         + "list container.");
+    }
+
+    if ((Boolean.TRUE.equals(property.isDate) || Boolean.TRUE.equals(property.isDateTime)) && "string".equals(property.dataType) && property.vendorExtensions.containsKey("x-date-without-timezone")) {
+      String type = property.isDate ? "utils.Date" : "utils.DateTime";
+      property.dataType = type;
+      property.datatypeWithEnum = type;
+      property.baseType = type;
     }
 
     // If the x-date-timezone is present in the specification, replace utils.Date with Date
