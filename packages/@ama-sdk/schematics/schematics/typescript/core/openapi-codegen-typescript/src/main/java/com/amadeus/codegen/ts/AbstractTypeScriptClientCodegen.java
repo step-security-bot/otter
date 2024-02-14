@@ -13,7 +13,7 @@ import io.swagger.v3.oas.models.media.Schema;
 import org.apache.commons.lang3.StringUtils;
 
 import org.openapitools.codegen.*;
-
+import org.openapitools.codegen.config.GlobalSettings;
 import org.openapitools.codegen.model.*;
 import org.openapitools.codegen.utils.ModelUtils;
 import org.openapitools.codegen.utils.CamelizeOption;
@@ -43,6 +43,8 @@ public abstract class AbstractTypeScriptClientCodegen extends DefaultCodegen imp
   protected List<String> nonObjectModels;
 
   private final Logger LOGGER = LoggerFactory.getLogger(AbstractTypeScriptClientCodegen.class);
+
+  private final boolean stringifyDate;
 
   public AbstractTypeScriptClientCodegen() {
     super();
@@ -105,8 +107,10 @@ public abstract class AbstractTypeScriptClientCodegen extends DefaultCodegen imp
     typeMapping.put("object", "any");
     typeMapping.put("integer", "number");
     typeMapping.put("Map", "any");
-    typeMapping.put("DateTime", "utils.DateTime");
-    typeMapping.put("Date", "utils.Date");
+    String stringifyDateString = GlobalSettings.getProperty("stringifyDate");
+    stringifyDate = stringifyDateString != null ? !"false".equalsIgnoreCase(stringifyDateString) : false;
+    typeMapping.put("DateTime", stringifyDate ? "string" : "utils.DateTime");
+    typeMapping.put("Date", stringifyDate ? "string" : "utils.Date");
     //TODO binary should be mapped to byte array
     // mapped to String as a workaround
     typeMapping.put("binary", "string");
@@ -467,7 +471,7 @@ public abstract class AbstractTypeScriptClientCodegen extends DefaultCodegen imp
       }
     }
 
-    if (property != null) {
+    if (property != null && !stringifyDate) {
       if (Boolean.TRUE.equals(property.isDate) || Boolean.TRUE.equals(property.isDateTime)) {
         property.isPrimitiveType = false;
       }
@@ -535,8 +539,8 @@ public abstract class AbstractTypeScriptClientCodegen extends DefaultCodegen imp
         + "list container.");
     }
 
-    // If the x-date-timezone is present in the specification, replace Date with utils.Date
-    if (property.vendorExtensions.containsKey("x-date-timezone")) {
+    // If the x-date-timezone is present in the specification, replace utils.Date with Date
+    if ("utils.Date".equals(property.dataType) && property.vendorExtensions.containsKey("x-date-timezone")) {
       property.dataType = "Date";
       property.datatypeWithEnum = "Date";
       property.baseType = "Date";
