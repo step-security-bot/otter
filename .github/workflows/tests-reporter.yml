@@ -10,7 +10,12 @@ jobs:
   publish-ut-reports:
     runs-on: ubuntu-latest
     steps:
-      - uses: dorny/test-reporter@v1
+      - name: Harden Runner
+        uses: step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142 # v2.7.0
+        with:
+          egress-policy: audit
+
+      - uses: dorny/test-reporter@a923ed8851f90a1509b334ca82bd1c5c13a02bb2 # v1
         with:
           artifact: /ut-reports(.*)/
           name: UT Tests report$1
@@ -20,7 +25,12 @@ jobs:
   publish-it-reports:
     runs-on: ubuntu-latest
     steps:
-      - uses: dorny/test-reporter@v1
+      - name: Harden Runner
+        uses: step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142 # v2.7.0
+        with:
+          egress-policy: audit
+
+      - uses: dorny/test-reporter@a923ed8851f90a1509b334ca82bd1c5c13a02bb2 # v1
         with:
           artifact: /it-reports(.*)/
           name: IT Tests report$1

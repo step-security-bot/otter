@@ -1,0 +1,321 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /.yarn/sdks/eslint
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /.yarn/sdks/typescript
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /apps/chrome-devtools
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /apps/github-cascading-app
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /apps/showcase
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /apps/vscode-extension
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@ama-sdk/core
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@ama-sdk/create
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@ama-sdk/schematics
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@ama-sdk/schematics/schematics/typescript/shell/templates/base/src/fixtures/jest
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@ama-sdk/schematics/schematics/typescript/shell/templates/base/src/helpers
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@ama-sdk/schematics/schematics/typescript/shell/templates/base/src/spec
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@ama-sdk/showcase-sdk
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@ama-sdk/showcase-sdk/src/fixtures/jest
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@ama-sdk/showcase-sdk/src/helpers
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@ama-sdk/showcase-sdk/src/spec
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@ama-sdk/swagger-builder
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@ama-terasu/cli
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@ama-terasu/core
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@ama-terasu/schematics
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/amaterasu/amaterasu-api-spec
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/amaterasu/amaterasu-dodo
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/amaterasu/amaterasu-otter
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/amaterasu/amaterasu-sdk
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/analytics
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/apis-manager
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/application
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/artifactory-tools
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/azure-tools
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/components
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/configuration
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/core
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/create
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/design
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/dev-tools
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/dynamic-content
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/eslint-config-otter
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/eslint-plugin
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/extractors
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/forms
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/localization
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/logger
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/mobile
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/routing
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/rules-engine
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/schematics
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/store-sync
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/storybook
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/stylelint-plugin
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/styling
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/telemetry
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/test-helpers
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/testing
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/third-party
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /packages/@o3r/workspace
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /tools/@o3r/build-helpers
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /tools/github-actions/audit
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /tools/github-actions/cascading
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /tools/github-actions/get-npm-tag
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /tools/github-actions/new-version
+    schedule:
+      interval: daily
+
+  - package-ecosystem: maven
+    directory: /packages/@ama-sdk/schematics/schematics/java/client-core/swagger-codegen-java-client
+    schedule:
+      interval: daily
+
+  - package-ecosystem: maven
+    directory: /packages/@ama-sdk/schematics/schematics/typescript/core/openapi-codegen-typescript
+    schedule:
+      interval: daily
